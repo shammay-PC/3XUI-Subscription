@@ -47,4 +47,4 @@ Enjoy seamless and user-friendly subscription management with this template!
 TG : https://t.me/+EpErnDsDPhw3ZThk
 
 ## Stargazers over time
-[![Stargazers over time](https://starchart.cc/dev-ir/xui-subscription-template.svg?variant=adaptive)](https://starchart.cc/dev-ir/xui-subscription-template)
+[![Stargazers over time](https://starchart.cc/dev-ir/XUI-Subscription-Template.svg?variant=adaptive)](https://starchart.cc/dev-ir/XUI-Subscription-Template)
