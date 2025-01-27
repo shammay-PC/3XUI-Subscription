@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <title>User information : <%= data.email %></title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="assets/img/icons/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon.ico"
+        media="(prefers-color-scheme: light)" />
+    <link href="https://cdn.jsdelivr.net/npm/yekan-font@1.0.0/css/yekan-font.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://ios.v4b.top/assets/css/main.css?ver=17374638191438" rel="stylesheet">
+    <meta name="theme-color" content="#1c1f30">
+</head>
+
+<body style="background: #1c1f30;">
+    <div class="container">
+        <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTumgBZSlZ1HxjNuj4oaHaPkR5EzlL9UQpOMA&s"
+                alt="لوگو ققنوس">
+        </div>
+        <h3 style="color: #ffce00;">شناسه <%= data.email %> خوش آمدید </h3>
+        <div class="info-box">
+            <div class="copy-container">
+                <textarea id="copy-textarea" rows="2"><%= data.suburl %></textarea>
+                <div class="copy-icon" onclick="copyToClipboard()">
+                    <i class="fas fa-copy"></i>
+                </div>
+            </div>
+        </div>
+        <div class="info-box">
+            <div class="info-item">
+                <i class="fas fa-hourglass-half"></i>
+                <p> وضعیت اکانت : <%= data.enable ? 'فعال' : 'غیرفعال' %></p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <p> روزهای باقیمانده :
+                    <% const remainingDays=Math.floor((data.expiryTime - Date.now()) / (1000 * 60 * 60 * 24)); %>
+                        <%= remainingDays>= 0 ? remainingDays + ' روز' : 'تاریخ پایان یافته' %>
+                </p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-chart-pie"></i>
+                <p>حجم مصرفی: <%= (data.up / 1_073_741_824).toFixed(2) %> GB</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-database"></i>
+                <p>حجم خریداری شده: <%= (data.total / 1_073_741_824).toFixed(2) %></p>
+            </div>
+        </div>
+        <div class="action-buttons">
+            <a href="<%= data.TELEGRAM_URL %>?text=سلام من شناسه <%= data.email %> هستم" class="action-btn"
+                style="background: linear-gradient(145deg, #007BFF, #0056b3);">
+                <i class="fas fa-headset"></i>پشتیبانی در تلگرام
+            </a>
+            <!-- <a href="#" class="action-btn"
+                style="background: linear-gradient(145deg, #25D366, #1DA84D);"><i class="fab fa-whatsapp"></i>پشتیبانی
+                در واتس‌اپ</a> -->
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            const textarea = document.getElementById("copy-textarea");
+            const textToCopy = textarea.value;
+
+            const tempTextarea = document.createElement("textarea");
+            tempTextarea.value = textToCopy;
+            document.body.appendChild(tempTextarea);
+
+            tempTextarea.select();
+            document.execCommand("copy");
+
+            document.body.removeChild(tempTextarea);
+
+            const modal = document.getElementById("modal-overlay");
+            modal.classList.add("active");
+        }
+        function closeModal() {
+            const modal = document.getElementById("modal-overlay");
+            modal.classList.remove("active");
+        }
+    </script>
+    <!-- مدال -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <p>لینک شما کپی شد</p>
+            <button onclick="closeModal()">باشه</button>
+        </div>
+    </div>
+</body>
+
+</html>
