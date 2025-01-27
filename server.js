@@ -9,8 +9,8 @@ import https from 'https';
 import http from 'http';
 
 const app = express();
-const httpPort = 2095;
-const httpsPort = 2096;
+const httpPort = 2082;
+const httpsPort = 2083;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -159,7 +159,7 @@ async function fetchUrlContent(url) {
 }
 
 http.createServer(app).listen(httpPort, () => {
-    console.log(`HTTP Server is running at ${PROTOCOL}://${SUBSCRIPTION}:${httpsPort}`);
+    console.log(`HTTP Server is running at HTTP://${SUBSCRIPTION}:${httpsPort}`);
 });
 
 if (PUBLIC_KEY_PATH && PRIVATE_KEY_PATH && fs.existsSync(PUBLIC_KEY_PATH) && fs.existsSync(PRIVATE_KEY_PATH)) {
@@ -168,7 +168,7 @@ if (PUBLIC_KEY_PATH && PRIVATE_KEY_PATH && fs.existsSync(PUBLIC_KEY_PATH) && fs.
         cert: fs.readFileSync(PUBLIC_KEY_PATH)
     };
     https.createServer(options, app).listen(httpsPort, () => {
-        console.log(`HTTPS Server is running at ${PROTOCOL}://${SUBSCRIPTION}:${httpsPort}`);
+        console.log(`HTTPS Server is running at HTTPS://${SUBSCRIPTION}:${httpsPort}`);
     });
 } else {
     console.warn('SSL certificates not found. Only HTTP server is running.');
