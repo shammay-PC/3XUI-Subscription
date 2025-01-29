@@ -20,6 +20,9 @@ You must restart the service after changing the configuration file.
 systemctl restart DVHOST_TEMPLATE
 systemctl status DVHOST_TEMPLATE
 ```
+**You should not have ports 2082 and 2083 involved.**
+
+
 ## 🪚 Preview
 <p align="left">
     <img width="100%" src="https://github.com/user-attachments/assets/629f455d-58c8-4b9b-b722-2948b39a9511" alt="Image">
