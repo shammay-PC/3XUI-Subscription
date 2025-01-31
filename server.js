@@ -15,7 +15,6 @@ const httpsPort = 2083;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load configuration from dvhost.config
 const configFile = path.join(__dirname, "dvhost.config");
 if (!fs.existsSync(configFile)) {
     console.error("Error: Configuration file 'dvhost.config' not found!");
@@ -25,29 +24,33 @@ if (!fs.existsSync(configFile)) {
 const config = fs.readFileSync(configFile, "utf-8")
     .split("\n")
     .reduce((acc, line) => {
-        const [key, value] = line.split("=");
-        if (key && value) {
-            acc[key.trim()] = value.trim();
+        const index = line.indexOf("=");
+        if (index !== -1) {
+            const key = line.substring(0, index).trim();
+            const value = line.substring(index + 1).trim();
+            if (key && value) {
+                acc[key] = value;
+            }
         }
         return acc;
     }, {});
 
-const { 
-    HOST: dvhost_host, 
-    PORT: dvhost_port, 
-    PATH: dvhost_path, 
-    USERNAME, 
-    PASSWORD, 
+const {
+    HOST: dvhost_host,
+    PORT: dvhost_port,
+    PATH: dvhost_path,
+    USERNAME,
+    PASSWORD,
     PROTOCOL,
     SUBSCRIPTION,
-    PUBLIC_KEY_PATH, // مسیر گواهی عمومی
-    PRIVATE_KEY_PATH, // مسیر کلید خصوصی
+    PUBLIC_KEY_PATH,
+    PRIVATE_KEY_PATH,
+    Backup_link,
     TELEGRAM_URL,
 } = config;
 
 const dvhost_loginData = { username: USERNAME, password: PASSWORD };
 
-// Helper function to convert timestamp to Jalali date
 const convertToJalali = (timestamp) => {
     const date = new Date(timestamp);
     const jalaaliDate = toJalaali(date.getFullYear(), date.getMonth() + 1, date.getDate());
@@ -128,11 +131,21 @@ app.get("/sub/:subId", async (req, res) => {
                     ...trafficData.obj,
                     expiryTimeJalali,
                     suburl,
+                    get_backup_link: Backup_link,
                     TELEGRAM_URL
                 },
             });
         } else {
-            res.send(suburl_content);
+            const base64BackupLink = Buffer.from(Backup_link, 'utf-8').toString('base64');
+            const decodedBackupLink = Buffer.from(base64BackupLink, 'base64').toString('utf-8');
+            
+            const decodedSuburlContent = Buffer.from(suburl_content, 'base64').toString('utf-8');
+            
+            const combinedContent = decodedBackupLink + '\n' + decodedSuburlContent;
+            
+            const combinedBase64 = Buffer.from(combinedContent, 'utf-8').toString('base64');
+            
+            res.send(combinedBase64);
         }
     } catch (error) {
         console.error("Error:", error.message);
@@ -159,7 +172,7 @@ async function fetchUrlContent(url) {
 }
 
 http.createServer(app).listen(httpPort, () => {
-    console.log(`HTTP Server is running at ${SUBSCRIPTION}:${httpsPort}`);
+    console.log(`HTTP Server is running at ${SUBSCRIPTION}:${httpPort}`);
 });
 
 if (PUBLIC_KEY_PATH && PRIVATE_KEY_PATH && fs.existsSync(PUBLIC_KEY_PATH) && fs.existsSync(PRIVATE_KEY_PATH)) {
