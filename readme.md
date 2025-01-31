@@ -22,6 +22,11 @@ systemctl status DVHOST_TEMPLATE
 ```
 **You should not have ports 2082 and 2083 involved.**
 
+## Template File
+```
+nano /opt/DVHOST/dvhost.config
+```
+If you want to create your own template, go this route.
 
 ## 🪚 Preview
 <p align="left">
