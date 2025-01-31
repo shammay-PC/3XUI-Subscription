@@ -124,7 +124,8 @@ app.get("/sub/:subId", async (req, res) => {
 
         const suburl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
         const suburl_content = await fetchUrlContent(SUBSCRIPTION + targetSubId);
-
+        const Backup_link = config.Backup_link || "";
+        
         if (userAgent && isBrowserRequest(userAgent)) {
             res.render("sub", {
                 data: {
