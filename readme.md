@@ -24,7 +24,7 @@ systemctl status DVHOST_TEMPLATE
 
 ## Template File
 ```
-nano /opt/DVHOST/dvhost.config
+nano /opt/DVHOST/views/sub.ejs
 ```
 If you want to create your own template, go this route.
 
