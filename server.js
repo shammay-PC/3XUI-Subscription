@@ -10,7 +10,6 @@ import http from 'http';
 
 const app = express();
 
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -43,14 +42,12 @@ const {
     PROTOCOL,
     SUBSCRIPTION,
     PUBLIC_KEY_PATH,
-    HTTP_PORT,
-    HTTPS_PORT,
+    PRIVATE_KEY_PATH,
     Backup_link,
+    SUB_HTTP_PORT,
+    SUB_HTTPS_PORT,
     TELEGRAM_URL,
 } = config;
-
-const httpPort = HTTP_PORT;
-const httpsPort = HTTPS_PORT;
 
 const dvhost_loginData = { username: USERNAME, password: PASSWORD };
 
@@ -175,8 +172,8 @@ async function fetchUrlContent(url) {
     }
 }
 
-http.createServer(app).listen(httpPort, () => {
-    console.log(`HTTP Server is running at ${SUBSCRIPTION}:${httpPort}`);
+http.createServer(app).listen(SUB_HTTP_PORT, () => {
+    console.log(`HTTP Server is running at ${SUBSCRIPTION}:${SUB_HTTP_PORT}`);
 });
 
 if (PUBLIC_KEY_PATH && PRIVATE_KEY_PATH && fs.existsSync(PUBLIC_KEY_PATH) && fs.existsSync(PRIVATE_KEY_PATH)) {
@@ -184,8 +181,8 @@ if (PUBLIC_KEY_PATH && PRIVATE_KEY_PATH && fs.existsSync(PUBLIC_KEY_PATH) && fs.
         key: fs.readFileSync(PRIVATE_KEY_PATH),
         cert: fs.readFileSync(PUBLIC_KEY_PATH)
     };
-    https.createServer(options, app).listen(httpsPort, () => {
-        console.log(`HTTPS Server is running at ${SUBSCRIPTION}:${httpsPort}`);
+    https.createServer(options, app).listen(SUB_HTTPS_PORT, () => {
+        console.log(`HTTPS Server is running at ${SUBSCRIPTION}:${SUB_HTTPS_PORT}`);
     });
 } else {
     console.warn('SSL certificates not found. Only HTTP server is running.');
