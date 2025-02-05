@@ -43,7 +43,7 @@
             </div>
             <div class="info-item">
                 <i class="fas fa-chart-pie"></i>
-                <p>حجم مصرفی: <%= (data.up / 1_073_741_824).toFixed(2) %> GB</p>
+                <p>حجم مصرفی: <%= ( (data.up + data.down) / 1_073_741_824).toFixed(2) %> GB</p>
             </div>
             <div class="info-item">
                 <i class="fas fa-database"></i>
