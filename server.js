@@ -9,8 +9,7 @@ import https from 'https';
 import http from 'http';
 
 const app = express();
-const httpPort = 2082;
-const httpsPort = 2083;
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,10 +43,14 @@ const {
     PROTOCOL,
     SUBSCRIPTION,
     PUBLIC_KEY_PATH,
-    PRIVATE_KEY_PATH,
+    HTTP_PORT,
+    HTTPS_PORT,
     Backup_link,
     TELEGRAM_URL,
 } = config;
+
+const httpPort = HTTP_PORT;
+const httpsPort = HTTPS_PORT;
 
 const dvhost_loginData = { username: USERNAME, password: PASSWORD };
 
