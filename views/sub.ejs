@@ -37,8 +37,39 @@
             <div class="info-item">
                 <i class="fas fa-calendar-alt"></i>
                 <p> روزهای باقیمانده :
-                    <% const remainingDays=Math.floor((data.expiryTime - Date.now()) / (1000 * 60 * 60 * 24)); %>
-                        <%= remainingDays>= 0 ? remainingDays + ' روز' : 'تاریخ پایان یافته' %>
+                    <% 
+                    try {
+                        if (!data || typeof data.expiryTime === 'undefined') {
+                            throw new Error("data یا expiryTime تعریف نشده است.");
+                        }
+                        const expiryTime = parseInt(data.expiryTime, 10);
+                        if (isNaN(expiryTime)) {
+                            throw new Error("expiryTime یک عدد معتبر نیست.");
+                        }
+                        const currentTime = Date.now();                
+                        if (expiryTime === 0) {
+                            %>
+                            بدون محدودیت
+                            <%
+                        } 
+                        else if (expiryTime > currentTime) {
+                            const remainingDays = Math.floor((expiryTime - currentTime) / (1000 * 60 * 60 * 24));
+                            %>
+                            <%= remainingDays + ' روز' %>
+                            <%
+                        } 
+                        else {
+                            %>
+                            منقضی شده
+                            <%
+                        }
+                    } catch (error) {
+                        console.error("خطا در محاسبه روزهای باقیمانده:", error.message);
+                        %>
+                        نامشخص
+                        <%
+                    }
+                    %>
                 </p>
             </div>
             <div class="info-item">
