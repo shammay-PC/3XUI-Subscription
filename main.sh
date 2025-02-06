@@ -86,6 +86,15 @@ remove_project() {
     sudo systemctl daemon-reload
 }
 
+edit_config_file(){
+
+    nano /opt/DVHOST/dvhost.config
+
+    sudo systemctl daemon-reload
+    sudo systemctl enable DVHOST_TEMPLATE
+    sudo systemctl start DVHOST_TEMPLATE
+}
+
 menu(){
     
     clear
@@ -105,7 +114,8 @@ menu(){
     echo "+-----------------------------------------------------------------------------------------------------------------------------+"                                        
     echo -e "${YELLOW}"
     echo -e "|  1  - Install Template"
-    echo -e "|  2  - Unistall Template"
+    echo -e "|  2  - Edit Configuation"
+    echo -e "|  3  - Unistall Template"
     echo -e "|  0  - Exit"
     echo -e "${NC}"
     echo "+-----------------------------------------------------------------------------------------------------------------------------+"                                        
@@ -118,9 +128,14 @@ menu(){
             clone_project
             install_project_dependencies
             create_service
-            echo "Installation and setup completed successfully!"
+            clear
+            echo "+---------------------------------------+"
+            echo -e "| ${YELLOW}Installation completed successfully! ${NC} |"
+            echo "+---------------------------------------+"
+
             ;;
-            2) remove_project ;;
+            2) edit_config_file ;;
+            3) remove_project ;;
             0)
                 echo -e "${GREEN}Exiting program...${NC}"
                 exit 0
