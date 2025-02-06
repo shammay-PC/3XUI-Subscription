@@ -44,7 +44,6 @@ const {
     PUBLIC_KEY_PATH,
     PRIVATE_KEY_PATH,
     TEMPLATE_NAME,
-    Backup_link,
     SUB_HTTP_PORT,
     SUB_HTTPS_PORT,
     TELEGRAM_URL,
