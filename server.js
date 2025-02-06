@@ -43,6 +43,7 @@ const {
     SUBSCRIPTION,
     PUBLIC_KEY_PATH,
     PRIVATE_KEY_PATH,
+    TEMPLATE_NAME,
     Backup_link,
     SUB_HTTP_PORT,
     SUB_HTTPS_PORT,
@@ -58,7 +59,7 @@ const convertToJalali = (timestamp) => {
 };
 
 app.use(express.static(path.join(__dirname, "public")));
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, `views/${TEMPLATE_NAME}`));
 app.set("view engine", "ejs");
 
 function isBrowserRequest(userAgent) {
