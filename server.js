@@ -59,7 +59,7 @@ const convertToJalali = (timestamp) => {
 };
 
 app.use(express.static(path.join(__dirname, "public")));
-app.set("views", path.join(__dirname, `views/${TEMPLATE_NAME}`));
+app.set("views", path.join(__dirname, `views/templates/${TEMPLATE_NAME}`));
 app.set("view engine", "ejs");
 
 function isBrowserRequest(userAgent) {
