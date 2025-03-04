@@ -18,7 +18,7 @@ nano /opt/DVHOST/dvhost.config
 بجای پورت 6854 و 8688 و 8886 پورت مد نظر خود را می توانید آزادانه جایگزین کنید.
 
 
-**راه اندازی مجدد سرویس پس از تنظیم و ایجاد تغییرات الزامی است.**
+## راه اندازی مجدد سرویس پس از تنظیم و ایجاد تغییرات
 ```
 systemctl restart DVHOST_TEMPLATE
 systemctl status DVHOST_TEMPLATE
