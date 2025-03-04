@@ -1,32 +1,43 @@
-<h1 align="center"/>⚡️ Welcome to XUI Panel Subscription Template ⚡️</h1>
+<h1 align="center"/>⚡️ قالب های سابسکریپشن برای پنل 3X-UI ⚡️</h1>
 
-> ** This is a custom subscription template designed for the XUI Panel, providing a clear view of service details, including usage, expiration date, and more. 
+> ** Desigend By: shammay.ir
 
-**We don't need financial support, only Star (⭐) is enough, thank you.**
+**این پروژه دو قالب سابسکریپشن حرفه ای و پایه را شامل می شود که برای پنل 3X-UI طراحی شده است و نمای واضحی از جزئیات اشتراک از جمله مشخصات کاربری، میزان استفاده از ترافیک، تاریخ انقضا اشتراک، حجم باقیمانده، لینک های پویا و کیو.آر کد اختصاصی و ... را بصورت کاملا گرافیکی و زیبا با محیطی کاربر پسند به همراه سرویس تشخیص خودکار سیستم عامل با دانلود نصب هوشمند روی کلاینت های اندرویدی، آی.او.اس و ویندوز را ارائه می دهد.**
 
 
-## Install & Upgrade
+## نصب ساده / بروزرسانی
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/dev-ir/xui-subscription-template/refs/heads/master/main.sh )
+bash <(curl -Ls https://raw.githubusercontent.com/shammay-PC/3xui-subscription/refs/heads/master/main.sh )
 ```
 
-## Configuration File
+## ویرایش و تنظیم دسترسی
 ```
 nano /opt/DVHOST/dvhost.config
 ```
-You must restart the service after changing the configuration file.
+راه اندازی مجدد سرویس پس از تنظیم و ایجاد تغییرات الزامی است.
 ```
 systemctl restart DVHOST_TEMPLATE
 systemctl status DVHOST_TEMPLATE
 ```
-**You should not have ports 2082 and 2083 involved.**
+**بجای پورت 6854 و 8688 و 8886 پورت مد نظر خود را می توانید آزادانه جایگزین کنید.**
+————————————————————————————————————————————————————————————————————————————
 
-## Template File
+## قالب حرفه ای: AyVPN
+![Ay VPN User_ shammayTCP(1)](https://github.com/user-attachments/assets/71333885-6e90-45aa-abd6-48b8439c5f83)
+
+————————————————————————————————————————————————————————————————————————————
+
+## قالب پایه: shammay
+![Ay VPN Subscription_ shammayVless](https://github.com/user-attachments/assets/72ae1a32-5454-42ec-9d3d-e3082d0dd176)
+
+————————————————————————————————————————————————————————————————————————————
+
+## دسترسی به فایل قالب ها
 ```
-nano /opt/DVHOST/views/sub.ejs
+nano /opt/DVHOST/views/AyVPN/sub.ejs
+nano /opt/DVHOST/views/shammay/sub.ejs
 ```
-If you want to create your own template, go this route.
 
 ## 🪚 Preview
 <p align="left">
@@ -34,34 +45,15 @@ If you want to create your own template, go this route.
 </p>
 
 
-## Languages
+## زبان ها
 
-- English
-
-## Dynamic Variables
-The template uses the following dynamic variables to display user-specific information:
-
-| Variable                | Description                        |
-|-------------------------|------------------------------------|
-| `<%= data.id %>`        | User or subscription ID.           |
-| `<%= data.email %>`     | User's email address.              |
-| `<%= data.suburl %>`    | Subscription URL.                  |
-| `<%= data.enable %>`    | Subscription status (true/false).  |
-| `<%= data.up %>`        | Uploaded data (bytes).             |
-| `<%= data.down %>`      | Downloaded data (bytes).           |
-| `<%= data.total %>`     | Total allowed data (bytes).        |
-| `<%= data.expiryTime %>`| Expiration time (timestamp).       |
-| `<%= data.inboundId %>` | Inbound connection ID.             |
-
-Enjoy seamless and user-friendly subscription management with this template!
+- فارسی
 
 
-## 🙏 Support with Crypto 
-- USDT (TRC20): `TVUqVMoCEe5DVUoxmPg8MwmgcHvZLqLjr4`
+## 📧 راه های ارتباط با توسعه دهنده
 
-## 📧 Join Telegram Channel
-
-TG : https://t.me/+EpErnDsDPhw3ZThk
+وب سایت : https://shammay.ir
+کانال تلگرام : https://t.me/Ay_VPN
 
 ## Stargazers over time
-[![Stargazers over time](https://starchart.cc/dev-ir/XUI-Subscription-Template.svg?variant=adaptive)](https://starchart.cc/dev-ir/XUI-Subscription-Template)
+[![Stargazers over time](https://starchart.cc/shammay-PC/3xui-subscription.svg?variant=adaptive)](https://starchart.cc/shammay-PC/3xui-subscription)
