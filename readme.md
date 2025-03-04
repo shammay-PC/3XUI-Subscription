@@ -15,29 +15,34 @@ bash <(curl -Ls https://raw.githubusercontent.com/shammay-PC/3xui-subscription/r
 ```
 nano /opt/DVHOST/dvhost.config
 ```
-راه اندازی مجدد سرویس پس از تنظیم و ایجاد تغییرات الزامی است.
+بجای پورت 6854 و 8688 و 8886 پورت مد نظر خود را می توانید آزادانه جایگزین کنید.
+
+
+**راه اندازی مجدد سرویس پس از تنظیم و ایجاد تغییرات الزامی است.**
 ```
 systemctl restart DVHOST_TEMPLATE
 systemctl status DVHOST_TEMPLATE
 ```
-**بجای پورت 6854 و 8688 و 8886 پورت مد نظر خود را می توانید آزادانه جایگزین کنید.**
-————————————————————————————————————————————————————————————————————————————
+
+![S8H](https://github.com/user-attachments/assets/aa9c8c6b-a4f4-4239-8465-9ad0b043645c)
+
 
 ## قالب حرفه ای: AyVPN
 ![Ay VPN User_ shammayTCP(1)](https://github.com/user-attachments/assets/71333885-6e90-45aa-abd6-48b8439c5f83)
 
-————————————————————————————————————————————————————————————————————————————
+![S8H](https://github.com/user-attachments/assets/aa9c8c6b-a4f4-4239-8465-9ad0b043645c)
 
 ## قالب پایه: shammay
 ![Ay VPN Subscription_ shammayVless](https://github.com/user-attachments/assets/72ae1a32-5454-42ec-9d3d-e3082d0dd176)
 
-————————————————————————————————————————————————————————————————————————————
+
 
 ## دسترسی به فایل قالب ها
 ```
 nano /opt/DVHOST/views/AyVPN/sub.ejs
 nano /opt/DVHOST/views/shammay/sub.ejs
 ```
+![S8H](https://github.com/user-attachments/assets/aa9c8c6b-a4f4-4239-8465-9ad0b043645c)
 
 ## 🪚 Preview
 <p align="left">
@@ -55,5 +60,3 @@ nano /opt/DVHOST/views/shammay/sub.ejs
 وب سایت : https://shammay.ir
 کانال تلگرام : https://t.me/Ay_VPN
 
-## Stargazers over time
-[![Stargazers over time](https://starchart.cc/shammay-PC/3xui-subscription.svg?variant=adaptive)](https://starchart.cc/shammay-PC/3xui-subscription)
