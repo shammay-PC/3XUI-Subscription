@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <title>Ay VPN Subscription: <%= data.email %></title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="assets/img/icons/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon.ico"
+        media="(prefers-color-scheme: light)" />
+    <link href="https://cdn.jsdelivr.net/npm/yekan-font@1.0.0/css/yekan-font.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://ios.v4b.top/assets/css/main.css?ver=17374638191438" rel="stylesheet">
+    <meta name="theme-color" content="#1c1f30">
+    <style>
+        /* استایل جدید برای h3 */
+        h3 {
+            font-size: 1.4em; /* بزرگ‌تر کردن فونت */
+            margin-top: 0px; /* فاصله از بالا */
+            margin-bottom: 0px; /* فاصله از پایین */
+            text-align: center; /* متن را وسط‌چین می‌کند */
+            color: #ffffff; /* رنگ متن */
+        }
+
+        /* تغییر رنگ آیکون‌ها و عنوان‌ها در info-box */
+        .info-item i {
+            color: #f1c40f; /* رنگ آیکون‌ها */
+            font-size: 1.2em; /* بزرگ‌تر کردن فونت */
+            margin-left: 0px; /* فاصله آیکون از متن */
+        }
+
+        .info-item p {
+            color: #65e4ff; /* رنگ عنوان‌ها */
+            font-size: 1em; /* بزرگ‌تر کردن فونت */
+            margin: 0; /* حذف margin پیش‌فرض */
+        }
+
+        .info-item p span {
+            color: #; /* رنگ valueها */
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #444444;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+            margin-bottom: 0px;
+            position: relative;
+            height: 25px;
+            border: 0px solid; /* حذف رنگ ثابت */
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #343a40;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .progress-segment {
+            display: inline-block;
+            height: 100%;
+        }
+
+        .segment-color-1 { background-color: #2ecc71; }
+        .segment-color-2 { background-color: #3498db; }
+        .segment-color-3 { background-color: #9b59b6; }
+        .segment-color-4 { background-color: #f1c40f; }
+        .segment-color-5 { background-color: #e74c3c; }
+        .segment-color-full { background-color: #28a745; width: 100%; }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            direction: rtl;
+            white-space: nowrap;
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.0);
+            border-radius: 5px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            color: #fff;
+            justify-content: space-between;
+        }
+
+        .status-active {
+            color: #28a745;
+        }
+
+        .status-inactive {
+            color: #dc3545;
+        }
+
+        /* استایل برای نوار حجم مصرفی */
+        .usage-bar-container {
+            width: 100%;
+            background-color: #444444;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 5px;
+            position: relative;
+            height: 25px;
+        }
+
+        .usage-bar {
+            height: 100%;
+            background: linear-gradient(to right, #007bff, #17a2b8, #28a745, #ffc107, #dc3545);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .usage-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            white-space: nowrap;
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.0);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body style="background: url('https://shammay.ir/SubBackground3') no-repeat center;>
+            background-size: cover;
+    <div class="container">
+			        <div class="logo">
+					<a href="https://shaammy.ir" target="_blank">
+					<img src="https://shammay.ir/SubLogo1"
+					alt="Ay VPN">
+					</a>
+					</div>
+        <h3 style="color: #ffce00;direction: rtl;" id="user-name">کاربر </h3> <!-- Empty h3 to fill dynamically -->
+        <div class="info-box">
+            <div style="direction: ltr;" class="copy-container">
+                <textarea id="copy-textarea" rows="2"><%= data.suburl %></textarea>
+                <div class="copy-icon" onclick="copyToClipboard()">
+                    <i style="color: #000000;" class="fas fa-copy"></i>
+                </div>
+            </div>
+
+            <!-- <div class="info-item"> -->
+            <!-- بلوک نوار پیشرفت -->
+            <div class="progress-bar-container" style="direction: ltr;border-color: <%= data.enable ? '#28a745' : '#dc3545' %>;">
+                <%
+                    let remainingDays = 0;
+                    let isUnlimited = false;
+                    let isExpired = false;
+                    let totalDays = 0; // تعداد کل روزها برای نوار پیشرفت
+                    try {
+                        if (!data || typeof data.expiryTime === 'undefined') {
+                            throw new Error("data یا expiryTime تعریف نشده است.");
+                        }
+                        const expiryTime = parseInt(data.expiryTime, 10);
+                        if (isNaN(expiryTime)) {
+                            throw new Error("expiryTime یک عدد معتبر نیست.");
+                        }
+                        const currentTime = Date.now();
+                        if (expiryTime === 0) {
+                            remainingDays = 0;
+                            isUnlimited = true;
+                        }
+                        else if (expiryTime > currentTime) {
+                            remainingDays = Math.floor((expiryTime - currentTime) / (1000 * 60 * 60 * 24));
+                        }
+                        else {
+                            remainingDays = 0;
+                            isExpired = true;
+                        }
+
+                        // تعیین بازه زمانی نوار پیشرفت
+                        if (remainingDays <= 30) {
+                            totalDays = 30;
+                        } else if (remainingDays <= 60) {
+                            totalDays = 60;
+                        } else if (remainingDays <= 90) {
+                            totalDays = 90;
+                        } else if (remainingDays <= 180) {
+                            totalDays = 180;
+                        } else if (remainingDays <= 365) {
+                            totalDays = 365;
+                        } else if (remainingDays <= 730) {
+                            totalDays = 730;
+                        } else if (remainingDays <= 5 * 365) { // کمتر از 5 سال
+                            totalDays = 5 * 365;
+                        } else {
+                            isUnlimited = true; // بیشتر از 5 سال یا نامحدود
+                        }
+                    } catch (error) {
+                        console.error("خطا در محاسبه روزهای باقیمانده:", error.message);
+                        remainingDays = 0;
+                    }
+                %>
+
+                <% if (isUnlimited) { %>
+                    <div class="progress-bar segment-color-full"></div>
+                    <span class="progress-text">نامحدود</span>
+                <% } else {
+                    let progressWidth = (remainingDays / totalDays) * 100;
+                    %>
+                    <div class="progress-bar" style="width: <%= progressWidth %>%"></div>
+                    <span class="progress-text"><%= remainingDays %> روز</span>
+                <% } %>
+            </div>
+            <!-- </div> -->
+
+            <!-- نوار حجم مصرفی -->
+            <%
+                let usedGB = (data.up + data.down) / 1_073_741_824;
+                let totalVolume = data.total / 1_073_741_824;
+                let maxVolume = 0;
+
+                if (totalVolume === 0) {
+                    if (usedGB <= 20) {
+                        maxVolume = 20;
+                    } else if (usedGB <= 50) {
+                        maxVolume = 50;
+                    } else if (usedGB <= 100) {
+                        maxVolume = 100;
+                    } else if (usedGB <= 500) {
+                        maxVolume = 500;
+                    } else {
+                        maxVolume = 1000;
+                    }
+                } else {
+                    maxVolume = totalVolume;
+                }
+                let usageWidth = (usedGB / maxVolume) * 100;
+                if (usageWidth > 100) usageWidth = 100;
+            %>
+            <!-- <div class="info-item"> -->
+            <div class="usage-bar-container" style="direction: ltr;">
+                <div class="usage-bar" style="width: <%= usageWidth %>%"></div>
+                <span class="usage-text"><%= usedGB.toFixed(2) %> GB</span>
+            </div>
+            <!-- </div> -->
+            </div>
+
+        <div class="info-box" style="direction: ltr;">
+        <!-- بلوک وضعیت اشتراک -->
+            <div class="info-item">
+                <i class="fas fa-user-large"></i>
+                <p> <span style="color: #f1c40f;">وضعیت اشتراک : </span>
+                    <% if (data.enable) { %>
+                        <span class="status-active">فعال</span>
+                    <% } else { %>
+                        <span class="status-inactive">غیرفعال</span>
+                    <% } %>
+                </p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <p> <span style="color: #f1c40f;">روزهای باقیمانده : </span>
+                    <% 
+                    try {
+                        if (!data || typeof data.expiryTime === 'undefined') {
+                            throw new Error("data یا expiryTime تعریف نشده است.");
+                        }
+                        const expiryTime = parseInt(data.expiryTime, 10);
+                        if (isNaN(expiryTime)) {
+                            throw new Error("expiryTime یک عدد معتبر نیست.");
+                        }
+                        const currentTime = Date.now();                
+                        if (expiryTime === 0) {
+                            %>
+                            نامحدود
+                            <%
+                        } 
+                        else if (expiryTime > currentTime) {
+                            const remainingDays = Math.floor((expiryTime - currentTime) / (1000 * 60 * 60 * 24));
+                            %>
+                            <%= remainingDays + ' روز' %>
+                            <%
+                        } 
+                        else {
+                            %>
+                            منقضی شده
+                            <%
+                        }
+                    } catch (error) {
+                        console.error("خطا در محاسبه روزهای باقیمانده:", error.message);
+                        %>
+                        نامشخص
+                        <%
+                    }
+                    %>
+                </p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-rocket"></i>
+                <p> <%= data.email %> <span style="color: #f1c40f;"> : کانفیگ</span> </p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-chart-pie"></i>
+                <p>
+				<span style="color: #f1c40f;">حجم مصرفی : </span>
+				<%= ( (data.up + data.down) / 1_073_741_824).toFixed(2) %> گیگابایت</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-database"></i>
+                <p>
+                    <span style="color: #f1c40f;">ترافیک مجاز : </span>
+                    <%
+                        const totalGB = data.total / 1_073_741_824;
+                        if (totalGB === 0) {
+                            %>
+                                نامحدود
+                            <%
+                        } else {
+                            %><%= totalGB.toFixed(2) %><%
+                        }
+                    %>
+                </p>
+            </div>
+        </div>
+        <div class="action-buttons">
+            <a href="<%= data.TELEGRAM_URL %>?text=سلام من کاربر <%= data.email %> هستم" class="action-btn"
+                style="margin-bottom: 30px;color: #fff;background: linear-gradient(145deg, #007BFF, #0056b3);">
+                <i class="fas fa-headset"></i>پشتیبانی در تلگرام
+            </a>
+            <a href="https://wa.me/989115166854" class="action-btn"
+                style="margin-bottom: 30px;background: linear-gradient(145deg, #25D366, #1DA84D);"><i class="fab fa-whatsapp"></i>پشتیبانی
+                در واتس‌اپ</a>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            const textarea = document.getElementById("copy-textarea");
+            const textToCopy = textarea.value;
+
+            const tempTextarea = document.createElement("textarea");
+            tempTextarea.value = textToCopy;
+            document.body.appendChild(tempTextarea);
+
+            tempTextarea.select();
+            document.execCommand("copy");
+
+            document.body.removeChild(tempTextarea);
+
+            const modal = document.getElementById("modal-overlay");
+            modal.classList.add("active");
+        }
+        function closeModal() {
+            const modal = document.getElementById("modal-overlay");
+            modal.classList.remove("active");
+        }
+    </script>
+        <script>
+            // Function to extract the user part from the URL
+            function getUserFromUrl() {
+                const url = window.location.href; // Get the current page URL
+                const match = url.match(/\/sub\/([^\/]+)/); // Extract the part after /sub/
+                if (match && match[1]) {
+                    return match[1]; // Return the part after /sub/
+                }
+                return null; // If not found, return null
+            }
+
+            // Set the extracted user ID into the h3 element
+            document.addEventListener('DOMContentLoaded', function () {
+                const userId = getUserFromUrl();
+                const userNameElement = document.getElementById('user-name');
+                if (userId) {
+                    userNameElement.textContent = `کاربر ${userId}`;
+                } else {
+                    userNameElement.textContent = "کاربر نامشخص"; // If no user ID found
+                }
+            });
+        </script>
+    <!-- مدال -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <p>لینک شما کپی شد</p>
+            <button onclick="closeModal()">باشه</button>
+        </div>
+    </div>
+</body>
+
+</html>
